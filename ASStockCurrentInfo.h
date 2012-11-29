@@ -11,12 +11,12 @@
 @interface ASStockCurrentInfo : UIView<UIWebViewDelegate>
 {
     UIWebView * m_webView;
-    NSMutableString * m_strMinString;
+    NSString * m_strMinString;
 }
 
 -(id)init;
--(void) StartNetStockInfoOfMinute : (NSString *)aJsString;
--(NSString *)FormatUrlString:(NSString *)aJsString;
+-(void) StartNetStockInfoOfMinute : (NSString *)aStringStockCode;
+-(NSString *)FormatUrlString:(NSString *)aStringStockCode;
 -(void)WebViewFresh;
 
 @end

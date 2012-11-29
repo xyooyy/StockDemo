@@ -24,20 +24,21 @@
     return self;
 }
 
--(void) StartNetStockInfoOfMinute : (NSString *)aJsString 
+-(void) StartNetStockInfoOfMinute : (NSString *)aStringStockCode
 {
+    
     [m_webView reload];
     m_strMinString = [[NSMutableString alloc] initWithCapacity:0];
-    m_strMinString = [self FormatUrlString:aJsString];
+    m_strMinString = [self FormatUrlString:aStringStockCode];
     NSURL * url = [NSURL URLWithString:m_strMinString];
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     [m_webView loadRequest:request];
-    
 }
 
--(NSString *)FormatUrlString:(NSString *)aMyJsString
+-(NSString *)FormatUrlString:(NSString *)aStringStockCode
 {
-    NSString * strMyStockUrl = [NSString stringWithFormat:@"http://hq.sinajs.cn/list=%@",aMyJsString];
+    NSString * strLowerStringCode = [aStringStockCode lowercaseString];
+    NSString * strMyStockUrl = [NSString stringWithFormat:@"http://hq.sinajs.cn/list=%@",strLowerStringCode];
     return strMyStockUrl;
 }
 
@@ -97,7 +98,10 @@
     
     //NSLog(@"%@",dict);
     NSNotification * notification= [NSNotification notificationWithName:@"GetHtmlContent" object:nil userInfo:dict];
-    [[NSNotificationCenter defaultCenter] postNotification:notification];
+    if (notification != nil) {
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
+    }
+
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error

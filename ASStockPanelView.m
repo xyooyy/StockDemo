@@ -15,7 +15,16 @@
 {
     m_labelIndex = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 170, 80)];
     [m_labelIndex setFont:[UIFont fontWithName:@"Helvetica-Bold" size:40]];
-    m_labelIndex.textColor = [UIColor greenColor];
+    
+//    double dbYesterdayEndPrice = [m_changeableStockInfo GetYesterdayEndPrice];
+//    double dbTodayBeginPrice = [m_changeableStockInfo GetTodayBeginPrice];
+//    
+//    if (dbTodayBeginPrice > dbYesterdayEndPrice) {
+//        m_labelIndex.textColor = [UIColor redColor];
+//    }
+    
+    m_labelIndex.textColor = [UIColor redColor];
+    
     m_labelIndex.backgroundColor = [UIColor clearColor];
     [m_imageBackground addSubview:m_labelIndex];
 }
@@ -130,33 +139,35 @@
     [m_imageBackground addSubview:m_labelFallNumber];
 }
 
--(void)ShowIndex:(double)aIndex
+-(void)ShowIndex:(double)aIndex andIndexColor:(UIColor *)aIndexColor
 {
-    [m_changeableStockInfo SetIndex:aIndex];
+    //[m_changeableStockInfo SetIndex:aIndex];
+    
     
     NSString * strIndex = [[NSString alloc] initWithFormat:@"%.2f",aIndex];
+    m_labelIndex.textColor = aIndexColor;
     m_labelIndex.text = strIndex;
 }
--(void)ShowAddOrSubPrice:(double)aAddOrSubPrice
+-(void)ShowAddOrSubPrice:(double)aAddOrSubPrice andAddOrSubPriceColor:(UIColor *)aAddOrSubPriceColor
 {
-    [m_changeableStockInfo SetAddOrSubPrice:aAddOrSubPrice];
+    //[m_changeableStockInfo SetAddOrSubPrice:aAddOrSubPrice];
     
-    //增加减少额
     NSString * strAddOrSubPrice = [[NSString alloc]initWithFormat:@"%.2f",aAddOrSubPrice];
+    m_labelAddOrSubPrice.textColor = aAddOrSubPriceColor;
     m_labelAddOrSubPrice.text = strAddOrSubPrice;
 }
--(void)ShowAddOrSubRate:(double)aAddOrSubRate
+-(void)ShowAddOrSubRate:(double)aAddOrSubRate andAddOrSubRateColor:(UIColor *)aAddOrSubRateColor
 {
-    [m_changeableStockInfo SetAddOrSubRate:aAddOrSubRate];
+    //[m_changeableStockInfo SetAddOrSubRate:aAddOrSubRate];
     
-    //增加减少额率
     NSString * strAddOrSubRate = [[NSString alloc]initWithFormat:@"%.2f%%",aAddOrSubRate];
+    m_labelAddOrSubRate.textColor = aAddOrSubRateColor;
     m_labelAddOrSubRate.text = strAddOrSubRate;
 }
 
 -(void)ShowTodayBeginPrice:(double)aTodayBeginPrice
 {
-    [m_changeableStockInfo SetTodayBeginPrice:aTodayBeginPrice];
+    //[m_changeableStockInfo SetTodayBeginPrice:aTodayBeginPrice];
     
     //今开价
     NSString * strTodayBeginPrice = [[NSString alloc]initWithFormat:@"%.2f",aTodayBeginPrice];
@@ -164,7 +175,7 @@
 }
 -(void)ShowYesterdayEndPrice:(double)aYesterdayEndPrice
 {
-    [m_changeableStockInfo SetYesterdayEndPrice:aYesterdayEndPrice];
+    //[m_changeableStockInfo SetYesterdayEndPrice:aYesterdayEndPrice];
     
     //昨收价
     NSString * strYesterdayEndPrice = [[NSString alloc]initWithFormat:@"%.2f",aYesterdayEndPrice];
@@ -172,7 +183,7 @@
 }
 -(void)ShowDoneDealPrice:(double)aDoneDealPrice
 {
-    [m_changeableStockInfo SetDoneDealPrice:aDoneDealPrice];
+    //[m_changeableStockInfo SetDoneDealPrice:aDoneDealPrice];
     
     //成交额价
     NSString * strDoneDealPrice = [[NSString alloc]initWithFormat:@"%.2f亿",aDoneDealPrice];
@@ -180,7 +191,7 @@
 }
 -(void)ShowSwingPercent:(double)aSwingPercent
 {
-    [m_changeableStockInfo SetSwingPercent:aSwingPercent];
+    //[m_changeableStockInfo SetSwingPercent:aSwingPercent];
     
     //振幅%
     NSString * strSwingPercent = [[NSString alloc]initWithFormat:@"%.2f%%",aSwingPercent];
@@ -189,7 +200,7 @@
 
 -(void)ShowTodayHighestPrice:(double)aTodayHighestPrice
 {
-    [m_changeableStockInfo SetTodayHighestPrice:aTodayHighestPrice];
+    //[m_changeableStockInfo SetTodayHighestPrice:aTodayHighestPrice];
     
     //最高价格
     NSString * strTodayHighestPrice = [[NSString alloc]initWithFormat:@"%.2f",aTodayHighestPrice];
@@ -197,7 +208,7 @@
 }
 -(void)ShowTodayLowestPrice:(double)aTodayLowestPrice
 {
-    [m_changeableStockInfo SetTodayLowestPrice:aTodayLowestPrice];
+    //[m_changeableStockInfo SetTodayLowestPrice:aTodayLowestPrice];
     
     //最低价格
     NSString * strTodayLowestPrice = [[NSString alloc]initWithFormat:@"%.2f",aTodayLowestPrice];
@@ -205,7 +216,7 @@
 }
 -(void)ShowDealNumber:(double)aDealNumber
 {
-    [m_changeableStockInfo SetDealNumber:aDealNumber];
+    //[m_changeableStockInfo SetDealNumber:aDealNumber];
     
     //成交数量
     NSString * strDealNumber = [[NSString alloc]initWithFormat:@"%.2f万手",aDealNumber];
@@ -214,7 +225,7 @@
 
 -(void)ShowRiseNumber:(int)aRiseNumber
 {
-    [m_changeableStockInfo SetRiseNumber:aRiseNumber];
+    //[m_changeableStockInfo SetRiseNumber:aRiseNumber];
     
     //涨家数值
     NSString * strRiseNumber = [[NSString alloc]initWithFormat:@"%d",aRiseNumber];
@@ -222,7 +233,7 @@
 }
 -(void)ShowSmoothNumber:(int)aSmoothNumber
 {
-    [m_changeableStockInfo SetSmoothNumber:aSmoothNumber];
+    //[m_changeableStockInfo SetSmoothNumber:aSmoothNumber];
     
     //平家数值
     NSString * strSmoothNumber = [[NSString alloc]initWithFormat:@"%d",aSmoothNumber];
@@ -230,7 +241,7 @@
 }
 -(void)ShowFallNumber:(int)aFallNumber
 {
-    [m_changeableStockInfo SetSmoothNumber:aFallNumber];
+    //[m_changeableStockInfo SetSmoothNumber:aFallNumber];
     
     //跌家数值
     NSString * strFallNumber = [[NSString alloc]initWithFormat:@"%d",aFallNumber];

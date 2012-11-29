@@ -109,6 +109,10 @@
 {
     return m_dbSwingPercent;
 }
+-(double)GetTodayBeginPrice
+{
+    return m_dbTodayBeginPrice;
+}
 -(double)GetYesterdayEndPrice
 {
     return m_dbYesterdayEndPrice;

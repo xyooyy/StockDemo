@@ -51,6 +51,7 @@
 
 -(double)GetDoneDealPrice;
 -(double)GetSwingPercent;
+-(double)GetTodayBeginPrice;
 -(double)GetYesterdayEndPrice;
 
 -(double)GetTodayHighestPrice;

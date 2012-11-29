@@ -33,9 +33,9 @@
 
 -(id)init:(UIImageView *)aImageBackground;
 
--(void)ShowIndex:(double)aIndex;
--(void)ShowAddOrSubPrice:(double)aAddOrSubPrice;
--(void)ShowAddOrSubRate:(double)aAddOrSubRate;
+-(void)ShowIndex:(double)aIndex andIndexColor:(UIColor *)aIndexColor;
+-(void)ShowAddOrSubPrice:(double)aAddOrSubPrice andAddOrSubPriceColor:(UIColor *)aAddOrSubPriceColor;
+-(void)ShowAddOrSubRate:(double)aAddOrSubRate andAddOrSubRateColor:(UIColor *)aAddOrSubRateColor;
 
 -(void)ShowTodayBeginPrice:(double)aTodayBeginPrice;
 -(void)ShowYesterdayEndPrice:(double)aYesterdayEndPrice;
@@ -49,5 +49,4 @@
 -(void)ShowSmoothNumber:(int)aSmoothNumber;
 -(void)ShowFallNumber:(int)aFallNumber;
 
--(void)ShowPanelWithoutData;
 @end

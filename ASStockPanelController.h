@@ -9,30 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "ASStockPanelView.h"
 #import "ASStockCurrentInfo.h"
+#import "ASChangeableStockInfo.h"
 
 @interface ASStockPanelController : UIViewController
 {
     ASStockPanelView * m_showDataView;
     ASStockCurrentInfo * m_currentStockInfo;
-    
-    double m_dbIndex;
-    double m_dbAddOrSubPrice;
-    double m_dbAddOrSubRate;
-    
-    double m_dbTodayBeginPrice;
-    double m_dbYesterdayEndPrice;
-    double m_dbDoneDealPrice;
-    double m_dbSwingPercent;
-    
-    double m_dbTodayHighestPrice;
-    double m_dbTodayLowestPrice;
-    double m_dbDealNumber;
-    int m_nRiseNumber;
-    int m_nSmoothNumber;
-    int m_nFallNumber;
-    
+    ASChangeableStockInfo * m_changeableStockInfo;
     NSString * m_strCurrentStockCode;
-    
     UIImageView * m_imageViewBackground;
 }
 

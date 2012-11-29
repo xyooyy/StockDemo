@@ -30,8 +30,32 @@
         m_imageViewBackground = aImageViewBackground;
         self.view.frame = aImageViewBackground.frame;
         m_strCurrentStockCode= [[NSString alloc] init];
+        m_strCurrentStockCode = @"sh000002";
+        
+        m_currentStockInfo = [[ASStockCurrentInfo alloc]init];
+        [m_currentStockInfo StartNetStockInfoOfMinute:m_strCurrentStockCode];
+        
+        m_imageViewBackground.backgroundColor = [UIColor blackColor];
+        m_showDataView = [[ASStockPanelView alloc] init:m_imageViewBackground];
+        
+        m_changeableStockInfo = [[ASChangeableStockInfo alloc] init];
     }
     return self;
+}
+
+-(UIColor*)LabelColor:(double)dbTodayBeginPrice and:(double)dbYesterdayEndPrice
+{
+    UIColor * color = [[UIColor alloc] init];
+    color = [UIColor greenColor];
+    if (dbTodayBeginPrice > dbYesterdayEndPrice ) {
+        color = [UIColor redColor];
+    }
+    
+    if (dbTodayBeginPrice == dbYesterdayEndPrice) {
+        color = [UIColor grayColor];
+    }
+    
+    return color;
 }
 
 -(void) GetHtmlContent:(NSNotification *)notification
@@ -53,40 +77,46 @@
     //NSString * strStockName = [[NSString alloc] initWithFormat:@"%@",[array objectAtIndex:0]];
     //NSLog(@"%@",strStockName);
     
-    m_dbIndex = [[array objectAtIndex:3] doubleValue];
-    [m_showDataView ShowIndex:m_dbIndex];
+    double dbTodayBeginPrice = [[array objectAtIndex:1] doubleValue];
+    [m_changeableStockInfo SetTodayBeginPrice:dbTodayBeginPrice];
+    [m_showDataView ShowTodayBeginPrice:dbTodayBeginPrice];
+    
+    double dbYesterdayEndPrice = [[array objectAtIndex:2] doubleValue];
+    [m_changeableStockInfo SetYesterdayEndPrice:dbYesterdayEndPrice];
+    [m_showDataView ShowYesterdayEndPrice:dbYesterdayEndPrice];
+    
+    UIColor * color = [self LabelColor:dbTodayBeginPrice and:dbYesterdayEndPrice];
+    
+    double dbIndex = [[array objectAtIndex:3] doubleValue];
+    [m_changeableStockInfo SetIndex:dbIndex];
+    [m_showDataView ShowIndex:dbIndex andIndexColor:color];
+    
+    double dbDoneDealPrice = [[array objectAtIndex:9] doubleValue]/100000000;
+    [m_changeableStockInfo SetDoneDealPrice:dbDoneDealPrice];
+    [m_showDataView ShowDoneDealPrice:dbDoneDealPrice];
+    
+    double dbTodayHighestPrice = [[array objectAtIndex:4] doubleValue];
+    [m_changeableStockInfo SetTodayHighestPrice:dbTodayHighestPrice];
+    [m_showDataView ShowTodayHighestPrice:dbTodayHighestPrice];
+    
+    double dbTodayLowestPrice = [[array objectAtIndex:5] doubleValue];
+    [m_changeableStockInfo SetTodayHighestPrice:dbTodayLowestPrice];
+    [m_showDataView ShowTodayLowestPrice:dbTodayLowestPrice];
+    
+    double dbDealNumber = [[array objectAtIndex:8] doubleValue]/10000;
+    [m_showDataView ShowDealNumber:dbDealNumber];
+    
     
     //没得到的
-    [m_showDataView ShowAddOrSubPrice:-19.42];
-    [m_showDataView ShowAddOrSubRate:-0.96];
+    [m_showDataView ShowAddOrSubPrice:-0.0 andAddOrSubPriceColor:color];
+    [m_showDataView ShowAddOrSubRate:-0.0 andAddOrSubRateColor:color];
     
-    m_dbTodayBeginPrice = [[array objectAtIndex:1] doubleValue];
-    [m_showDataView ShowTodayBeginPrice:m_dbTodayBeginPrice];
+    [m_showDataView ShowSwingPercent:0.0];
     
-    m_dbYesterdayEndPrice = [[array objectAtIndex:2] doubleValue];
-    [m_showDataView ShowYesterdayEndPrice:m_dbYesterdayEndPrice];
-    
-    
-    m_dbDoneDealPrice = [[array objectAtIndex:9] doubleValue]/100000000;
-    [m_showDataView ShowDoneDealPrice:m_dbDoneDealPrice];
-    
-    //没得到的
-    [m_showDataView ShowSwingPercent:0.61];
-    
-    m_dbTodayHighestPrice = [[array objectAtIndex:4] doubleValue];
-    [m_showDataView ShowTodayHighestPrice:m_dbTodayHighestPrice];
-    
-    m_dbTodayLowestPrice = [[array objectAtIndex:5] doubleValue];
-    [m_showDataView ShowTodayLowestPrice:m_dbTodayLowestPrice];
-    
-    
-    m_dbDealNumber = [[array objectAtIndex:8] doubleValue]/10000;
-    [m_showDataView ShowDealNumber:m_dbDealNumber];
-    
-    //没得到的
-    [m_showDataView ShowRiseNumber:100];
-    [m_showDataView ShowSmoothNumber:36];
-    [m_showDataView ShowFallNumber:805];
+    [m_showDataView ShowRiseNumber:0];
+    [m_showDataView ShowSmoothNumber:0];
+    [m_showDataView ShowFallNumber:0];
+
 }
 
 - (void)viewDidLoad
@@ -96,14 +126,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(GetHtmlContent:) name:@"GetHtmlContent" object:nil];
     
-    m_currentStockInfo = [[ASStockCurrentInfo alloc]init];
-    //NSString * strJsMinString = @"sh000001";
-    m_strCurrentStockCode = @"sh000001";
-    [m_currentStockInfo StartNetStockInfoOfMinute:m_strCurrentStockCode];
     [self.view addSubview:m_currentStockInfo];
-    
-    m_showDataView = [[ASStockPanelView alloc] init:m_imageViewBackground];
-    m_imageViewBackground.backgroundColor = [UIColor blackColor];
     [self.view addSubview:m_imageViewBackground];
 }
 
