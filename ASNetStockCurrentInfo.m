@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 Alpha Studio. All rights reserved.
 //
 
-#import "ASStockCurrentInfo.h"
+#import "ASNetStockCurrentInfo.h"
 
-@implementation ASStockCurrentInfo
+@implementation ASNetStockCurrentInfo
 
 -(id)init
 {

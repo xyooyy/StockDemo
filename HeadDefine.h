@@ -12,7 +12,7 @@
 #define TOOLBAR_DEFAULT_INDEX       0
 
 #define  NET_MINUTE                 1
-#define  NET_KLINE                  2
+#define  NET_KLINE                 2
 #define  WEB_FRAME_X                0
 #define  WEB_FRAME_Y                0
 #define  WEB_FRAME_WIDTH            0

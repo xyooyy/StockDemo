@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ASStockPanelView.h"
-#import "ASStockCurrentInfo.h"
+#import "ASNetStockCurrentInfo.h"
 #import "ASChangeableStockInfo.h"
 
 @interface ASStockPanelController : UIViewController
 {
     ASStockPanelView * m_showDataView;
-    ASStockCurrentInfo * m_currentStockInfo;
+    ASNetStockCurrentInfo * m_currentStockInfo;
     ASChangeableStockInfo * m_changeableStockInfo;
     NSString * m_strCurrentStockCode;
     UIImageView * m_imageViewBackground;

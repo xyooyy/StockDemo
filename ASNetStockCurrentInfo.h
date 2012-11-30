@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ASStockCurrentInfo : UIView<UIWebViewDelegate>
+@interface ASNetStockCurrentInfo : UIView<UIWebViewDelegate>
 {
     UIWebView * m_webView;
     NSString * m_strMinString;

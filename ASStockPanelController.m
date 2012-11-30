@@ -30,9 +30,9 @@
         m_imageViewBackground = aImageViewBackground;
         self.view.frame = aImageViewBackground.frame;
         m_strCurrentStockCode= [[NSString alloc] init];
-        m_strCurrentStockCode = @"sh000002";
+        m_strCurrentStockCode = @"sh000001";
         
-        m_currentStockInfo = [[ASStockCurrentInfo alloc]init];
+        m_currentStockInfo = [[ASNetStockCurrentInfo alloc]init];
         [m_currentStockInfo StartNetStockInfoOfMinute:m_strCurrentStockCode];
         
         m_imageViewBackground.backgroundColor = [UIColor blackColor];
