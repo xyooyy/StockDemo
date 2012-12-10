@@ -3,7 +3,7 @@
 //  UpDemo
 //
 //  Created by WangM on 12-11-23.
-//  Copyright (c) 2012年 AlphaStudio. All rights reserved.
+//  Copyright (c) 2012年 Alpha Studio. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
